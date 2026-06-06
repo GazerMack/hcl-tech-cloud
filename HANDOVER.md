@@ -2,7 +2,7 @@
 
 **Purpose of this file.** Drop this into any new chat session (with the same workspace) and the next assistant should be able to continue building the bible at the same quality, with no back-and-forth, and without re-discovering decisions or known traps.
 
-**Last updated:** v1.14 — **Core curriculum complete, stretch V.2 (Fraud, AML & sanctions deep) shipped.** All Foundations (I.1–I.4) + Application Stack (II.1–II.2) + Data (III.1–III.2) + Infra & Ops (IV.1–IV.2) + Security, Risk & Compliance (V.1–V.2) + BFSI Platforms (VI.1–VI.4) + Leadership Lenses (VII.1–VII.2). I.1 deep rewrite complete. I.4, III.2, IV.2, V.2 stretch topics complete. Mermaid syntax stable; notes/highlights feature shipped.
+**Last updated:** v1.22 — **27 topics across 9 Parts.** All Foundations (I.1–I.5) + Application Stack (II.1–II.3) + Data (III.1–III.3) + Infra & Ops (IV.1–IV.2) + Security, Risk & Compliance (V.1–V.2) + BFSI Platforms (VI.1–VI.6) + Leadership Lenses (VII.1–VII.3) + AI & Emerging Technology (VIII.1–VIII.2) + Cloud FinOps & Cost Governance (IX.1). Mermaid syntax stable; notes/highlights feature shipped.
 
 ---
 
@@ -95,21 +95,26 @@ hcl tech cloud/
 │   │   ├── 01-transactions.html       # 196.5 KB, generated from May 2026 v2 rewrite sections 0–9
 │   │   ├── 02-seven-layers.html       # 27.5 KB
 │   │   ├── 03-cloud-and-infra.html    # 27.9 KB
-│   │   └── 04-network-fundamentals.html  # 41.3 KB
+│   │   ├── 04-network-fundamentals.html  # 41.3 KB
+│   │   └── 05-mainframe-modernisation.html  # stretch I.5
 │   ├── bfsi-platforms/
 │   │   ├── index.html
 │   │   ├── 01-core-banking-platforms.html  # 24.6 KB
 │   │   ├── 02-payments-engines.html        # 45.0 KB
 │   │   ├── 03-lending-and-originations.html  # 56.7 KB
-│   │   └── 04-capmkts-and-insurance.html     # 38.6 KB
+│   │   ├── 04-capmkts-and-insurance.html     # 38.6 KB
+│   │   ├── 05-cards-and-switches.html        # stretch VI.5
+│   │   └── 06-wealth-management-platforms.html  # stretch VI.6, 45.8 KB
 │   ├── application-stack/
 │   │   ├── index.html
 │   │   ├── 01-apis-and-integration.html    # 51.2 KB
-│   │   └── 02-microservices-monoliths-ddd.html  # 39.2 KB
+│   │   ├── 02-microservices-monoliths-ddd.html  # 39.2 KB
+│   │   └── 03-testing-strategies-bfsi.html      # stretch II.3, 48.7 KB
 │   ├── data/
 │   │   ├── index.html
 │   │   ├── 01-databases-and-the-ledger.html  # 36.5 KB
-│   │   └── 02-streaming-data-event-driven-architecture.html  # 213.7 KB
+│   │   ├── 02-streaming-data-event-driven-architecture.html  # 213.7 KB
+│   │   └── 03-data-governance-lineage-cdo.html  # stretch III.3
 │   ├── infra-ops/
 │   │   ├── index.html
 │   │   └── 01-cloud-native-operations.html   # 37.3 KB
@@ -119,7 +124,15 @@ hcl tech cloud/
 │   ├── leadership/
 │   │   ├── index.html
 │   │   ├── 01-architecture-decision-frameworks.html  # 31.8 KB
-│   │   └── 02-vendor-management-and-programme-delivery.html  # 36.1 KB
+│   │   ├── 02-vendor-management-and-programme-delivery.html  # 36.1 KB
+│   │   └── 03-regulator-and-board-communication.html   # stretch VII.3
+│   ├── ai-emerging/
+│   │   ├── index.html
+│   │   ├── 01-ai-ml-genai-in-bfsi.html   # stretch VIII.1
+│   │   └── 02-blockchain-dlt-tokenised-assets.html  # stretch VIII.2, 51.2 KB
+│   ├── finops/
+│   │   ├── index.html
+│   │   └── 01-cloud-finops-cost-governance.html  # stretch IX.1, 44.9 KB
 │   └── assets/
 │       ├── css/style.css              # dark theme + notes UI + print stylesheet
 │       ├── js/main.js                 # mermaid init, right-rail TOC, sidebar search
@@ -138,18 +151,27 @@ hcl tech cloud/
         ├── foundations_02_seven_layers.py
         ├── foundations_03_cloud.py
         ├── foundations_04_network.py
+        ├── foundations_05_mainframe.py
         ├── application_stack_01_apis.py
         ├── application_stack_02_microservices.py
+        ├── application_stack_03_testing.py
         ├── data_01_databases.py
         ├── data_02_streaming.py
+        ├── data_03_governance_lineage.py
         ├── infra_ops_01_cloud_native.py
         ├── security_risk_01_security_identity.py
         ├── bfsi_platforms_01_core_banking.py
         ├── bfsi_platforms_02_payments_engines.py
         ├── bfsi_platforms_03_lending.py
         ├── bfsi_platforms_04_capmkts_insurance.py
+        ├── bfsi_platforms_05_cards_switches.py
+        ├── bfsi_platforms_06_wealth_management.py
         ├── leadership_01_architecture_decisions.py
-        └── leadership_02_vendor_programme.py
+        ├── leadership_02_vendor_programme.py
+        ├── leadership_03_regulator_board_comms.py
+        ├── ai_emerging_01_ai_ml_genai.py
+        ├── ai_emerging_02_blockchain_dlt.py
+        └── finops_01_cloud_finops.py
 ```
 
 **Naming convention.** `<part_folder>_<NN>_<slug>.py`, e.g. `application_stack_01_apis.py`. Use a single file per topic unless it would exceed the assistant's per-message token budget — only then split into `_part2.py`, `_part3.py` (see I.1 for the pattern).
@@ -240,10 +262,12 @@ The print stylesheet flips to a white background, hides nav and notes UI. Chrome
 | I.2   | The seven-layer mental model of any digital bank       | ✅ 27.5 KB    |
 | I.3   | Cloud, on-prem, and hybrid for BFSI                    | ✅ 27.9 KB    |
 | I.4   | Network fundamentals for BFSI (TLS, mTLS, zero trust)  | ✅ 41.3 KB    |
+| I.5   | Mainframe modernisation (COBOL, IBM Z, encapsulation)  | ✅ stretch complete |
 | II.1  | APIs and integration — REST, gRPC, GraphQL, ISO 20022  | ✅ 51.2 KB    |
 | II.2  | Microservices, monoliths, and Domain-Driven Design     | ✅ 39.2 KB    |
 | III.1 | Databases and the bank's ledger (OLTP + lakehouse)     | ✅ 36.5 KB    |
 | III.2 | Streaming data & event-driven architecture (Kafka, Flink) | ✅ complete, 213.7 KB |
+| III.3 | Data governance, lineage, and the CDO function         | ✅ stretch complete |
 | IV.1  | Cloud-native operations — K8s, observability, SRE, FinOps | ✅ 37.3 KB    |
 | IV.2  | DevOps + SRE deeper — CI/CD, IaC, platform engineering, DORA | ✅ complete |
 | V.1   | Security, identity, and the global regulator landscape | ✅ 47.1 KB    |
@@ -252,19 +276,36 @@ The print stylesheet flips to a white background, hides nav and notes UI. Chrome
 | VI.2  | Payments engines — Volante, Form3, ACI, Finastra      | ✅ 44.6 KB    |
 | VI.3  | Lending & originations — LOS, LMS, decisioning, collections | ✅ 56.7 KB, includes HCLTech BA app field guide |
 | VI.4  | Capital markets & insurance platforms                  | ✅ 38.6 KB    |
+| VI.5  | Cards & switches (Visa/Mastercard/RuPay flows)         | ✅ stretch complete |
 | VII.1 | Architecture decision frameworks                       | ✅ 31.8 KB    |
 | VII.2 | Vendor management & large-programme delivery           | ✅ 36.1 KB    |
+| VII.3 | Communicating with regulators and boards                | ✅ stretch complete |
+| VIII.1 | AI, ML, and GenAI in BFSI                             | ✅ stretch complete |
+| VI.6  | Wealth management platforms (Avaloq, Temenos Wealth, Aladdin Wealth) | ✅ stretch complete, 45.8 KB |
+| VIII.2 | Blockchain, DLT, and tokenised assets in BFSI                    | ✅ stretch complete, 51.2 KB |
+| II.3  | Testing strategies in BFSI (performance, regression, regulatory UAT) | ✅ stretch complete, 48.7 KB |
+| IX.1  | Cloud FinOps and cost governance at scale                        | ✅ stretch complete, 44.9 KB |
 
 ### 7.2 Planned next — core complete, stretch in progress
 
-All originally planned core topics (I.1–III.1, IV.1, V.1, VI.1–VI.4, VII.1–VII.2) have shipped at least once. Stretch topics I.4 (network), III.2 (streaming), IV.2 (DevOps/SRE deep), and V.2 (Fraud/AML/sanctions deep) are now complete. The next recommended work item is **start stretch topic VI.5 — Cards & switches (Visa/Mastercard/RuPay flows in depth)**.
+All originally planned core topics and all stretch topics are now complete. The bible now covers 9 Parts and 27 topics. Consider deepening existing thin topics (I.2, I.3, VI.1 are under 30 KB).
 
 ### 7.3 Stretch (after the above core)
 
-- IV.2 — DevOps + SRE deeper.
-- V.2 — Fraud, AML, and sanctions in operational depth.
-- VI.5 — Cards & switches (Visa/Mastercard/RuPay flows in depth).
-- VII.3 — Communicating with regulators and boards.
+- ~~IV.2 — DevOps + SRE deeper.~~ ✅ Done
+- ~~V.2 — Fraud, AML, and sanctions in operational depth.~~ ✅ Done
+- ~~VI.5 — Cards & switches (Visa/Mastercard/RuPay flows in depth).~~ ✅ Done
+- ~~VII.3 — Communicating with regulators and boards.~~ ✅ Done
+- ~~VIII.1 — AI, ML, and GenAI in BFSI.~~ ✅ Done
+- ~~III.3 — Data governance, lineage, and the CDO function.~~ ✅ Done
+- ~~I.5 — Mainframe modernisation (COBOL, IBM Z, encapsulation strategies).~~ ✅ Done
+
+### 7.4 Potential future stretch topics
+
+- ~~VI.6 — Wealth management platforms (Avaloq, Temenos Wealth, Aladdin).~~ ✅ Done
+- ~~VIII.2 — Blockchain, DLT, and tokenised assets in BFSI.~~ ✅ Done
+- ~~II.3 — Testing strategies in BFSI (performance, regression, regulatory UAT).~~ ✅ Done
+- ~~IX.1 — Cloud FinOps and cost governance at scale.~~ ✅ Done
 
 ---
 
@@ -303,7 +344,7 @@ If the model knows of something newer, prefer the newer fact.
 
 Paste this verbatim at the start of a new chat with the workspace open:
 
-> Continue building the BFSI Tech Bible. Read `HANDOVER.md` at the project root; it has the locked pedagogy, the file layout, build commands, the Mermaid quirks I learned the hard way, and the planned next-work list. Pick up at section 7.2: start stretch topic VI.5 — Cards & switches (Visa/Mastercard/RuPay flows in depth) — at the same zero-assumption, geographically balanced pedagogy as the completed deep topics. Build the new topic in two-section increments, wire it into `generate.py` and the sidebar, regenerate, and confirm the build is green. Do not ask permission for small decisions — implement and inform.
+> Continue building the BFSI Tech Bible. Read `HANDOVER.md` at the project root; it has the locked pedagogy, the file layout, build commands, the Mermaid quirks I learned the hard way, and the planned next-work list. Pick up at section 7.4 for the next stretch topic. Use the same zero-assumption, geographically balanced pedagogy as the completed deep topics. Build the new topic, wire it into `generate.py` and the sidebar, regenerate, and confirm the build is green. Do not ask permission for small decisions — implement and inform.
 
 Then for each turn just say **"continue"**.
 

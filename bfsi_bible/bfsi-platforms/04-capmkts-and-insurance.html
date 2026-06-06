@@ -25,14 +25,17 @@
 <a class="topic" href="../foundations/02-seven-layers.html">I.2 · Seven-layer mental model</a>
 <a class="topic" href="../foundations/03-cloud-and-infra.html">I.3 · Cloud, on-prem, hybrid</a>
 <a class="topic" href="../foundations/04-network-fundamentals.html">I.4 · Network fundamentals</a>
+<a class="topic" href="../foundations/05-mainframe-modernisation.html">I.5 · Mainframe modernisation</a>
 <div class="part">II — Application Stack</div>
 <a href="../application-stack/index.html">Overview</a>
 <a class="topic" href="../application-stack/01-apis-and-integration.html">II.1 · APIs and integration</a>
 <a class="topic" href="../application-stack/02-microservices-monoliths-ddd.html">II.2 · Microservices, monoliths, DDD</a>
+<a class="topic" href="../application-stack/03-testing-strategies-bfsi.html">II.3 · Testing strategies in BFSI</a>
 <div class="part">III — Data</div>
 <a href="../data/index.html">Overview</a>
 <a class="topic" href="../data/01-databases-and-the-ledger.html">III.1 · Databases &amp; the ledger</a>
 <a class="topic" href="../data/02-streaming-data-event-driven-architecture.html">III.2 · Streaming data &amp; event-driven architecture</a>
+<a class="topic" href="../data/03-data-governance-lineage-cdo.html">III.3 · Data governance, lineage &amp; the CDO</a>
 <div class="part">IV — Infrastructure &amp; Operations</div>
 <a href="../infra-ops/index.html">Overview</a>
 <a class="topic" href="../infra-ops/01-cloud-native-operations.html">IV.1 · Cloud-native operations</a>
@@ -40,16 +43,27 @@
 <div class="part">V — Security, Risk &amp; Compliance</div>
 <a href="../security-risk/index.html">Overview</a>
 <a class="topic" href="../security-risk/01-security-identity-regulators.html">V.1 · Security, identity &amp; regulators</a>
+<a class="topic" href="../security-risk/02-fraud-aml-sanctions.html">V.2 · Fraud, AML &amp; sanctions in depth</a>
 <div class="part">VI — BFSI Domain Platforms</div>
 <a href="../bfsi-platforms/index.html">Overview</a>
 <a class="topic" href="../bfsi-platforms/01-core-banking-platforms.html">VI.1 · Core banking platforms</a>
 <a class="topic" href="../bfsi-platforms/02-payments-engines.html">VI.2 · Payments engines</a>
 <a class="topic" href="../bfsi-platforms/03-lending-and-originations.html">VI.3 · Lending &amp; originations</a>
 <a class="topic" href="../bfsi-platforms/04-capmkts-and-insurance.html">VI.4 · Capital markets &amp; insurance</a>
+<a class="topic" href="../bfsi-platforms/05-cards-and-switches.html">VI.5 · Cards &amp; switches</a>
+<a class="topic" href="../bfsi-platforms/06-wealth-management-platforms.html">VI.6 · Wealth management platforms</a>
 <div class="part">VII — Leadership Lenses</div>
 <a href="../leadership/index.html">Overview</a>
 <a class="topic" href="../leadership/01-architecture-decision-frameworks.html">VII.1 · Architecture decision frameworks</a>
 <a class="topic" href="../leadership/02-vendor-management-and-programme-delivery.html">VII.2 · Vendor management &amp; programme delivery</a>
+<a class="topic" href="../leadership/03-regulator-and-board-communication.html">VII.3 · Communicating with regulators &amp; boards</a>
+<div class="part">VIII — AI &amp; Emerging Technology</div>
+<a href="../ai-emerging/index.html">Overview</a>
+<a class="topic" href="../ai-emerging/01-ai-ml-genai-in-bfsi.html">VIII.1 · AI, ML &amp; GenAI in BFSI</a>
+<a class="topic" href="../ai-emerging/02-blockchain-dlt-tokenised-assets.html">VIII.2 · Blockchain, DLT &amp; tokenised assets</a>
+<div class="part">IX — Cloud FinOps &amp; Cost Governance</div>
+<a href="../finops/index.html">Overview</a>
+<a class="topic" href="../finops/01-cloud-finops-cost-governance.html">IX.1 · Cloud FinOps &amp; cost governance</a>
   </nav>
 </aside>
 
@@ -96,7 +110,7 @@
 <ol><li>What instruments / lines of business does each platform cover, and where are the duplicates?</li><li>What is our T+1 readiness — UK/EU 11 Oct 2027 — and are post-trade systems ready to settle in 24 hours?</li><li>What is our FRTB programme status (EU live 2025, UK 2026), and how is it integrated with our risk platform?</li><li>Where are we on IFRS 17 / LDTI run state — is it production-stable or still firefighting close cycles?</li><li>What is our Aladdin / Murex / Calypso / ION concentration risk, and is there a credible challenger / exit plan per DORA?</li><li>What surveillance coverage do we have on trade and comms, and is e-comms covered to the standard the SEC is fining on?</li><li>How are we adopting Guidewire Cloud / Duck Creek OnDemand / Sapiens cloud, and have we tested DR for the SaaS deployment?</li><li>What is our claims-AI roadmap and what fraud savings have we measured?</li><li>What is our tokenised-assets roadmap — BUIDL-style MMF, repo, secondary trading?</li><li>How are we using EU MiCA / UK DSS / Singapore Project Guardian / India CBDC pilots to learn before scaling?</li><li>What is our reinsurance ceded-book accounting platform, and is it ready for IFRS 17 PAA / GMM?</li><li>Are conduct risk and best-execution analytics running on data the regulator finds defensible?</li></ol>
 <h2 id="9-red-flags-topic-glossary">9.  Red flags + topic glossary <span class="pill pill-basic">Basic</span></h2>
 <div class="callout red"><span class="label">Red flag — push back if you hear this</span><ul><li>‘Capital markets and insurance can share one core platform.’ — They cannot. Lifecycle, latency and regulators are different. Share data, not core systems.</li><li>‘Aladdin / Murex / Calypso is too big to fail.’ — ION January 2023 says otherwise. Plan for a TLPT-level outage.</li><li>‘IFRS 17 is finished.’ — Year-1 close is finished. Reserving granularity, transition hangovers and audit fine-tuning are still 2–3 years of work.</li><li>‘FRTB is just a model upgrade.’ — It is also a data-quality, sensitivity-collection, and IPV (Independent Price Verification) overhaul.</li><li>‘T+1 is just a SLA change.’ — It is a global post-trade re-engineering: matching, FX funding, stock-loan recall, all faster.</li><li>‘Surveillance covers our floor.’ — Off-channel comms (WhatsApp, Signal, Telegram) cost the industry >USD 3B in SEC + CFTC fines from 2021–24. Coverage must be device-level, not just approved-channel.</li><li>‘Claims AI replaces adjusters.’ — It augments them. Loss-of-control complaints under FCA Consumer Duty, EU AI Act high-risk for life pricing — keep a human in the loop.</li><li>‘Tokenisation is a sandbox toy.’ — BUIDL crossed USD 500M AUM in 9 months; Broadridge DLR settles real repo. The integration question is now ‘when’, not ‘if’.</li><li>‘Reinsurance is the reinsurer’s problem.’ — Ceded-book accounting and bordereaux quality are the cedent’s problem; bad data costs basis points every quarter.</li><li>‘Solvency II is settled in the EU.’ — The 2024 Solvency II Review and UK Solvency UK reforms rewrite parts of the regime; engines and reports need updating in 2025–26.</li></ul></div><h3 id="glossary-for-this-topic">Glossary for this topic</h3><ul><li><strong>OMS / EMS</strong> — Order / Execution Management System.</li><li><strong>FIX</strong> — Financial Information eXchange protocol.</li><li><strong>CCP / CSD</strong> — Central Counterparty / Central Securities Depository.</li><li><strong>DTCC / Euroclear / Clearstream / NSDL / CDSL</strong> — Major CSDs by region.</li><li><strong>LCH / ICE Clear / CME Clearing / Eurex / NSCCL</strong> — Major CCPs.</li><li><strong>MiFID II / MiFIR / EMIR / SFTR / CAT / Dodd-Frank</strong> — Capital-markets reporting regimes.</li><li><strong>FRTB</strong> — Fundamental Review of the Trading Book — Basel trading-book capital framework; EU 2025, UK 2026, US delayed.</li><li><strong>CSDR</strong> — EU Central Securities Depositories Regulation; settlement-fail penalties.</li><li><strong>xVA</strong> — CVA / DVA / FVA / KVA / MVA — derivatives valuation adjustments.</li><li><strong>VaR / ES</strong> — Value-at-Risk / Expected Shortfall.</li><li><strong>Aladdin / Charles River / SimCorp / Bloomberg AIM</strong> — Major buy-side OMS / IBOR platforms.</li><li><strong>Murex / Calypso / Summit / FIS Front Arena / ION</strong> — Major sell-side trading and risk platforms.</li><li><strong>Broadridge</strong> — Major US post-trade platform; Distributed Ledger Repo (DLR) live.</li><li><strong>Guidewire / Duck Creek / Sapiens / EIS / Majesco / FINEOS</strong> — Major insurance core platforms.</li><li><strong>Prophet / AXIS / R3S / MoSes / GGY-AXIS</strong> — Actuarial modelling engines.</li><li><strong>IFRS 17</strong> — Insurance Contracts standard; effective 1 Jan 2023 globally.</li><li><strong>LDTI</strong> — US GAAP Long-Duration Targeted Improvements; ASU 2018-12.</li><li><strong>Solvency II / Solvency UK / RBC / SAM / ICS</strong> — Insurance capital regimes.</li><li><strong>CSM</strong> — Contractual Service Margin — IFRS 17 concept for unearned profit.</li><li><strong>ORSA</strong> — Own Risk and Solvency Assessment under Solvency II.</li><li><strong>FNOL</strong> — First Notice of Loss — start of the claims process.</li><li><strong>BUIDL / Onyx / Orion / GS DAP / DLR</strong> — Major tokenised-asset platforms.</li><li><strong>Project Agorá / Project Guardian / DSS</strong> — Tokenisation initiatives — BIS, MAS, Bank of England.</li><li><strong>MiCA</strong> — EU Markets in Crypto-Assets regulation; in force 30 Dec 2024.</li><li><strong>Trade repository / SDR</strong> — Holds derivatives trade reports for regulators.</li><li><strong>IBOR / ABOR</strong> — Investment Book of Record / Accounting Book of Record.</li></ul>
-    <nav class="page-nav"><a href="03-lending-and-originations.html"><span class="dir">← Previous</span>Lending and originations platforms — LOS, LMS, decisioning, collections</a><span></span></nav>
+    <nav class="page-nav"><a href="03-lending-and-originations.html"><span class="dir">← Previous</span>Lending and originations platforms — LOS, LMS, decisioning, collections</a><a href="05-cards-and-switches.html"><span class="dir">Next →</span>Cards &amp; switches — Visa, Mastercard, RuPay flows in depth</a></nav>
   </main>
   <aside class="toc-right"><div class="label">On this page</div></aside>
 </div>

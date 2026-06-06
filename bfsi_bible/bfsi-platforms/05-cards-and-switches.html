@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Cards &amp; switches — Visa, Mastercard, RuPay flows in depth · BFSI Tech Bible</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="layout">
+  
+<aside class="sidebar">
+  <div class="brand">
+    <h1>BFSI Tech Bible</h1>
+    <span class="subtitle">Techno-Functional Leader Reference</span>
+  </div>
+  <input class="search" type="search" placeholder="Filter sections…" />
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../glossary.html">Glossary</a>
+    <div class="part">I — Foundations</div>
+<a href="../foundations/index.html">Overview</a>
+<a class="topic" href="../foundations/01-transactions.html">I.1 · Transaction flow</a>
+<a class="topic" href="../foundations/02-seven-layers.html">I.2 · Seven-layer mental model</a>
+<a class="topic" href="../foundations/03-cloud-and-infra.html">I.3 · Cloud, on-prem, hybrid</a>
+<a class="topic" href="../foundations/04-network-fundamentals.html">I.4 · Network fundamentals</a>
+<a class="topic" href="../foundations/05-mainframe-modernisation.html">I.5 · Mainframe modernisation</a>
+<div class="part">II — Application Stack</div>
+<a href="../application-stack/index.html">Overview</a>
+<a class="topic" href="../application-stack/01-apis-and-integration.html">II.1 · APIs and integration</a>
+<a class="topic" href="../application-stack/02-microservices-monoliths-ddd.html">II.2 · Microservices, monoliths, DDD</a>
+<a class="topic" href="../application-stack/03-testing-strategies-bfsi.html">II.3 · Testing strategies in BFSI</a>
+<div class="part">III — Data</div>
+<a href="../data/index.html">Overview</a>
+<a class="topic" href="../data/01-databases-and-the-ledger.html">III.1 · Databases &amp; the ledger</a>
+<a class="topic" href="../data/02-streaming-data-event-driven-architecture.html">III.2 · Streaming data &amp; event-driven architecture</a>
+<a class="topic" href="../data/03-data-governance-lineage-cdo.html">III.3 · Data governance, lineage &amp; the CDO</a>
+<div class="part">IV — Infrastructure &amp; Operations</div>
+<a href="../infra-ops/index.html">Overview</a>
+<a class="topic" href="../infra-ops/01-cloud-native-operations.html">IV.1 · Cloud-native operations</a>
+<a class="topic" href="../infra-ops/02-devops-sre-deep.html">IV.2 · DevOps &amp; SRE in depth</a>
+<div class="part">V — Security, Risk &amp; Compliance</div>
+<a href="../security-risk/index.html">Overview</a>
+<a class="topic" href="../security-risk/01-security-identity-regulators.html">V.1 · Security, identity &amp; regulators</a>
+<a class="topic" href="../security-risk/02-fraud-aml-sanctions.html">V.2 · Fraud, AML &amp; sanctions in depth</a>
+<div class="part">VI — BFSI Domain Platforms</div>
+<a href="../bfsi-platforms/index.html">Overview</a>
+<a class="topic" href="../bfsi-platforms/01-core-banking-platforms.html">VI.1 · Core banking platforms</a>
+<a class="topic" href="../bfsi-platforms/02-payments-engines.html">VI.2 · Payments engines</a>
+<a class="topic" href="../bfsi-platforms/03-lending-and-originations.html">VI.3 · Lending &amp; originations</a>
+<a class="topic" href="../bfsi-platforms/04-capmkts-and-insurance.html">VI.4 · Capital markets &amp; insurance</a>
+<a class="topic" href="../bfsi-platforms/05-cards-and-switches.html">VI.5 · Cards &amp; switches</a>
+<a class="topic" href="../bfsi-platforms/06-wealth-management-platforms.html">VI.6 · Wealth management platforms</a>
+<div class="part">VII — Leadership Lenses</div>
+<a href="../leadership/index.html">Overview</a>
+<a class="topic" href="../leadership/01-architecture-decision-frameworks.html">VII.1 · Architecture decision frameworks</a>
+<a class="topic" href="../leadership/02-vendor-management-and-programme-delivery.html">VII.2 · Vendor management &amp; programme delivery</a>
+<a class="topic" href="../leadership/03-regulator-and-board-communication.html">VII.3 · Communicating with regulators &amp; boards</a>
+<div class="part">VIII — AI &amp; Emerging Technology</div>
+<a href="../ai-emerging/index.html">Overview</a>
+<a class="topic" href="../ai-emerging/01-ai-ml-genai-in-bfsi.html">VIII.1 · AI, ML &amp; GenAI in BFSI</a>
+<a class="topic" href="../ai-emerging/02-blockchain-dlt-tokenised-assets.html">VIII.2 · Blockchain, DLT &amp; tokenised assets</a>
+<div class="part">IX — Cloud FinOps &amp; Cost Governance</div>
+<a href="../finops/index.html">Overview</a>
+<a class="topic" href="../finops/01-cloud-finops-cost-governance.html">IX.1 · Cloud FinOps &amp; cost governance</a>
+  </nav>
+</aside>
+
+  <main class="content">
+    <h1>VI.5 · Cards &amp; switches — Visa, Mastercard, RuPay flows in depth</h1>
+<p class="lead">When you tap your card at a coffee shop in London and money leaves your account in Mumbai milliseconds later, a complex choreography of acquirers, switches, networks, and issuers has occurred. Here is how card payments actually work under the hood.</p>
+<h2 id="0-primer-anchored-to-things-you-already-know">0.  Primer — anchored to things you already know <span class="pill pill-basic">Basic</span></h2>
+<div class="callout primer"><span class="label">Primer — read this even if you think you know it</span><p>Card payments are the most universally accepted, complex, and profitable payment mechanisms in BFSI. While 'instant payments' like UPI or FedNow are replacing some card volume, the four-party card model remains the backbone of global consumer commerce.</p></div><h3 id="0-1-it-side-anchor-a-global-dns-resolution">0.1  IT-side anchor — a global DNS resolution</h3><div class="callout it"><span class="label">From what you already know — your laptop</span><p>When you type a URL, your browser asks a local resolver, which asks a root server, which asks a TLD server, which asks the domain's name server to find the exact IP address. Card payments work similarly. The shop's terminal doesn't know your bank. It asks the shop's bank (the Acquirer), which asks the Network (Visa/Mastercard), which routes the message to your specific bank (the Issuer) to get an approval code.</p></div><h3 id="0-2-bfsi-side-anchor-buying-a-coffee-with-a-tap">0.2  BFSI-side anchor — buying a coffee with a tap</h3><div class="callout bfsi"><span class="label">From what you already know — your bank account</span><p>You buy a £3 coffee and tap your Mastercard. The terminal says 'Approved' in one second. But no money actually moved yet. What happened was a cryptographic promise: your bank verified your balance, placed a £3 hold, and promised the shop's bank they will send the money tomorrow. That split between the instant 'authorization' and the overnight 'clearing and settlement' is the fundamental secret of the card industry.</p></div>
+<h2 id="1-why-card-networks-exist-the-four-party-model">1.  Why card networks exist — the Four-Party Model <span class="pill pill-basic">Basic</span></h2>
+<p>Card payments exist to solve the fundamental problem of trust between strangers at scale. The 'Four-Party Model' (which actually has five or more entities) provides the rules, the routing, and the economic incentives.</p><ol><li><strong>The Cardholder:</strong> You, the consumer.</li><li><strong>The Merchant:</strong> The coffee shop.</li><li><strong>The Issuer:</strong> Your bank (e.g., Citi, HDFC), who gave you the card and holds your money.</li><li><strong>The Acquirer:</strong> The merchant's bank (e.g., Chase Paymentech, Worldpay), who provides the POS terminal.</li><li><strong>The Network (Scheme):</strong> Visa, Mastercard, RuPay, Discover. They sit in the middle, setting rules and routing messages.</li></ol><p>The system exists to guarantee the merchant gets paid, protect the consumer from fraud, and earn fees for the banks (interchange) and the network (assessments) in exchange for this seamless global interoperability.</p>
+<h2 id="2-the-core-concept-in-one-picture">2.  The core concept in one picture <span class="pill pill-basic">Basic</span></h2>
+<figure class="figure"><div class="mermaid">sequenceDiagram
+  autonumber
+  participant C as Cardholder
+  participant M as Merchant POS
+  participant A as Acquirer
+  participant N as Network (Visa/MC)
+  participant I as Issuer (Your Bank)
+  C->>M: Tap or insert card
+  M->>A: Auth Request (ISO 8583)
+  A->>N: Route by BIN
+  N->>I: Auth Request to Issuer
+  I-->>I: Check balance, PIN, fraud risk
+  I->>N: Auth Response (Approved/Declined)
+  N->>A: Auth Response
+  A->>M: Terminal displays Approved
+  M->>C: Hand over coffee</div><div class="cap">The instant authorization flow (Clearing and Settlement happen later).</div></figure>
+<h2 id="3-how-it-actually-works-auth-clear-settle">3.  How it actually works — auth, clear, settle <span class="pill pill-inter">Intermediate</span></h2>
+<h3 id="3-1-phase-1-authorization-real-time">3.1  Phase 1: Authorization (Real-time)</h3><p>This is the sequence diagram above. When you tap, the POS generates an ISO 8583 0100 message containing your card number (PAN), amount, merchant category code (MCC), and cryptographic tokens (EMV cryptogram). It flows through the Acquirer and Network to the Issuer. The Issuer verifies the cryptogram, checks your balance, places a hold on the funds, and returns an approval code.</p><h3 id="3-2-phase-2-clearing-batch-end-of-day">3.2  Phase 2: Clearing (Batch, End of Day)</h3><p>At the end of the day, the merchant 'batches out' their terminal. The Acquirer collects all the approved authorizations and sends a bulk clearing file to the Network. The Network sorts these by Issuer. This is when the exact fees (Interchange) are calculated based on the transaction type. No money moves yet; they are just trading the final receipts.</p><h3 id="3-3-phase-3-settlement-t-1-or-t-2">3.3  Phase 3: Settlement (T+1 or T+2)</h3><p>The Network calculates the net position for every bank. If Bank A owes Bank B $10M, and Bank B owes Bank A $8M, the Network tells the Central Bank (e.g., the Fed or RBI) to move a net $2M from Bank A's settlement account to Bank B's settlement account. Finally, the Acquirer deposits the funds (minus fees) into the merchant's bank account.</p>
+<h2 id="4-types-variations">4.  Types &amp; variations <span class="pill pill-inter">Intermediate</span></h2>
+<h3 id="4-1-the-networks">4.1  The Networks</h3><div class="table-wrap"><table><thead><tr><th>Network type</th><th>Examples</th><th>How it works</th></tr></thead><tbody><tr><td><strong>Four-party (Open Loop)</strong></td><td>Visa, Mastercard, RuPay (India), Cartes Bancaires (France)</td><td>The network connects independent issuing banks and acquiring banks. They do not issue cards directly.</td></tr><tr><td><strong>Three-party (Closed Loop)</strong></td><td>American Express, Discover (mostly)</td><td>The network is ALSO the issuer and the acquirer. Amex issues the card to you and signs up the merchant directly.</td></tr></tbody></table></div><h3 id="4-2-the-switches">4.2  The Switches</h3><p>A 'Switch' is the software engine that speaks the complex ISO 8583 protocol, routes messages in milliseconds, and handles cryptography (HSM integration).</p><div class="table-wrap"><table><thead><tr><th>Vendor / Product</th><th>Origin</th><th>Use Case</th></tr></thead><tbody><tr><td><strong>ACI Worldwide (BASE24 / UP)</strong></td><td>United States</td><td>The legacy king of switching. Runs massive ATM and POS networks globally.</td></tr><tr><td><strong>FIS (IST/Switch / Connex)</strong></td><td>United States</td><td>Huge footprint in North America and Europe, powering many tier-1 acquirers.</td></tr><tr><td><strong>Euronet / RS2 / BPC (SmartVista)</strong></td><td>Various</td><td>Strong global challengers offering modern, often cloud-capable issuing and acquiring platforms.</td></tr><tr><td><strong>FSS / In-house</strong></td><td>India</td><td>Many Indian banks use FSS or build custom UPI/RuPay switches to handle massive volumes.</td></tr></tbody></table></div>
+<h2 id="5-advanced-economics-emv-and-tokenization">5.  Advanced — economics, EMV, and tokenization <span class="pill pill-advanced">Advanced</span></h2>
+<h3 id="5-1-the-economics-interchange-assessments-and-discount-rates">5.1  The Economics: Interchange, Assessments, and Discount Rates</h3><ul><li><strong>Merchant Discount Rate (MDR):</strong> The total fee the merchant pays (e.g., 2%).</li><li><strong>Interchange:</strong> The largest chunk (e.g., 1.5%), paid <em>by</em> the Acquirer <em>to</em> the Issuer. It funds your credit card rewards.</li><li><strong>Assessments/Scheme Fees:</strong> The small slice (e.g., 0.1%) Visa/Mastercard keep.</li><li><strong>Acquirer Margin:</strong> What the merchant's bank keeps (e.g., 0.4%).</li></ul><p>When politicians cap Interchange fees (as in the EU or India for debit), credit card rewards disappear because the Issuer no longer has the margin to fund them.</p><h3 id="5-2-emv-chip-and-contactless-cryptography">5.2  EMV (Chip) and Contactless Cryptography</h3><p>Magnetic stripes were static and easily cloned. EMV (Europay, Mastercard, Visa) chips are tiny secure computers. When you dip or tap, the terminal gives the chip a random number. The chip uses a secret key (that never leaves the chip) to encrypt the number, creating a unique Application Cryptogram (ARQC). The Issuer's HSM verifies this cryptogram, proving the physical card is present and preventing replay attacks.</p><h3 id="5-3-tokenization-apple-pay-google-pay">5.3  Tokenization (Apple Pay, Google Pay)</h3><p>When you add a card to Apple Pay, Apple requests a 'Token' from the Network (MDES for Mastercard, VTS for Visa). The Network issues a Device Account Number (DAN) that replaces your real PAN. The DAN only works on that specific iPhone. If the merchant gets hacked, the stolen DAN is useless without the iPhone's secure enclave.</p>
+<h2 id="6-bfsi-domain-regulatory-overlay">6.  BFSI / domain regulatory overlay <span class="pill pill-advanced">Advanced</span></h2>
+<p>Card payments are heavily regulated due to their systemic importance and consumer impact.</p><div class="table-wrap"><table><thead><tr><th>Region</th><th>Key Regulations and Dynamics</th></tr></thead><tbody><tr><td><strong>India</strong></td><td>RBI mandates domestic routing for domestic transactions. MDR on RuPay debit and UPI is zero (subsidized). RBI strictly enforces tokenization for saved cards (Card-on-File) and mandates 2FA (OTP) for all online transactions.</td></tr><tr><td><strong>United States</strong></td><td>Durbin Amendment (Dodd-Frank) caps debit card interchange fees for large banks. Credit card interchange remains uncapped and high, driving a massive rewards ecosystem.</td></tr><tr><td><strong>United Kingdom & EU</strong></td><td>Interchange Fee Regulation (IFR) heavily caps interchange (0.2% debit, 0.3% credit). PSD2 mandates Strong Customer Authentication (SCA) for online payments.</td></tr><tr><td><strong>Singapore / APAC</strong></td><td>MAS regulates payment services closely. High penetration of domestic QR schemes (PayNow) competing with cards.</td></tr></tbody></table></div>
+<h2 id="7-trade-offs-and-decisions-a-leader-owns">7.  Trade-offs and decisions a leader owns <span class="pill pill-inter">Intermediate</span></h2>
+<div class="table-wrap"><table><thead><tr><th>Decision</th><th>Trade-offs and considerations</th></tr></thead><tbody><tr><td><strong>Build vs. Buy an Issuing Switch</strong></td><td>Buying (ACI, BPC) is faster and compliance-ready. Building in-house allows unique products and API-first architectures (e.g., what modern fintechs do), but requires massive HSM and ISO 8583 expertise.</td></tr><tr><td><strong>On-Premise vs. Cloud HSMs</strong></td><td>Physical HSMs (Thales, Safenet) in your data center offer ultimate control but scale poorly. Cloud HSMs (AWS Payment Cryptography) are now PCI-PIN certified and offer auto-scaling, but regulators in some regions still mandate on-prem keys.</td></tr><tr><td><strong>Active-Active Resiliency</strong></td><td>Switches must handle thousands of TPS. Doing true active-active across multiple data centers is incredibly hard due to database replication lag. A split-brain scenario can result in double authorizations.</td></tr></tbody></table></div>
+<h2 id="8-worked-examples-numbers-and-decisions">8.  Worked examples — numbers and decisions <span class="pill pill-inter">Intermediate</span></h2>
+<div class="callout example"><span class="label">Worked example — A $100 Credit Card Purchase in the US</span><p>Merchant charges $100. They pay a 2.5% MDR, receiving $97.50. The Acquirer takes that $2.50. They pay $2.00 (Interchange) to the Issuer (e.g., Chase) and $0.15 to Visa (Network). The Acquirer keeps $0.35. Chase uses the $2.00 to pay for your 1.5% cash-back reward and cover fraud/credit risk.</p></div><div class="callout example"><span class="label">Worked example — Stand-in Processing (STIP) during an Outage</span><p>If HDFC's core banking system goes down for maintenance, their switch might go into STIP mode. It uses cached balances or hardcoded limits (e.g., 'approve up to ₹5,000 even if core is down') to ensure customers aren't stranded. When the core returns, the switch syncs the authorizations.</p></div><div class="callout example"><span class="label">Worked example — Cross-border fx markup</span><p>You use a UK Barclays card in Dubai. The merchant's Acquirer sends the transaction in AED. Visa converts it to GBP using their daily wholesale rate. Barclays receives the authorization in GBP, adds a 2.99% 'non-sterling transaction fee', and posts that to your account. The FX spread is highly profitable for the issuer.</p></div>
+<h2 id="9-red-flags-topic-glossary">9.  Red flags + topic glossary <span class="pill pill-basic">Basic</span></h2>
+<div class="callout red"><span class="label">Red flag — push back if you hear this</span><ul><li>‘We don't need HSMs if we use strong TLS.’ — Completely false. PCI-PIN and network rules legally mandate hardware-level cryptography for PINs and EMV cryptograms.</li><li>‘Let's process the auths in the core banking batch.’ — Authorization must happen in under a second. Cores are too slow; this is why standalone Switches exist.</li><li>‘We'll just use a JSON REST API instead of ISO 8583.’ — You can use JSON internally, but the second you talk to Visa, Mastercard, or a legacy Acquirer, you must translate to ISO 8583 or ISO 20022.</li></ul></div><h3 id="glossary-for-this-topic">Glossary for this topic</h3><ul><li><strong>Acquirer</strong> — The bank that provides the merchant with a terminal and processes their card payments.</li><li><strong>Issuer</strong> — The bank that issues the credit or debit card to the consumer.</li><li><strong>ISO 8583</strong> — The dominant legacy messaging standard for card authorizations.</li><li><strong>Interchange</strong> — The fee paid by the Acquirer to the Issuer, usually a percentage of the transaction.</li><li><strong>MDR</strong> — Merchant Discount Rate; the total fee the merchant pays to accept the card.</li><li><strong>EMV</strong> — Europay, Mastercard, Visa; the global standard for chip cards and contactless cryptography.</li><li><strong>HSM</strong> — Hardware Security Module; a tamper-resistant physical device used to manage cryptographic keys securely.</li><li><strong>STIP</strong> — Stand-In Processing; when the network or switch approves a transaction on behalf of a downed issuer.</li><li><strong>Tokenization</strong> — Replacing a real card number (PAN) with a surrogate value (token) for Apple Pay, Google Pay, or Card-on-File.</li></ul>
+    <nav class="page-nav"><a href="04-capmkts-and-insurance.html"><span class="dir">← Previous</span>Capital markets and insurance platforms — trading, post-trade, asset management, P&amp;C, life</a><a href="06-wealth-management-platforms.html"><span class="dir">Next →</span>Wealth management platforms — private banking, advisory, and robo</a></nav>
+  </main>
+  <aside class="toc-right"><div class="label">On this page</div></aside>
+</div>
+<script src="../assets/vendor/mermaid.min.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/notes.js" defer></script>
+</body>
+</html>

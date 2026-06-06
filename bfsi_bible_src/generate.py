@@ -28,6 +28,15 @@ from .topics import (
     bfsi_platforms_04_capmkts_insurance,
     leadership_01_architecture_decisions,
     leadership_02_vendor_programme,
+    leadership_03_regulator_board_comms,
+    bfsi_platforms_05_cards_switches,
+    bfsi_platforms_06_wealth_management,
+    ai_emerging_01_ai_ml_genai,
+    ai_emerging_02_blockchain_dlt,
+    application_stack_03_testing,
+    data_03_governance_lineage,
+    foundations_05_mainframe,
+    finops_01_cloud_finops,
 )
 
 
@@ -44,6 +53,7 @@ def build_index() -> SiteIndex:
                  TopicLink("02-seven-layers",      "Seven-layer mental model",  "I.2"),
                  TopicLink("03-cloud-and-infra",   "Cloud, on-prem, hybrid",    "I.3"),
                  TopicLink("04-network-fundamentals", "Network fundamentals",   "I.4"),
+                 TopicLink("05-mainframe-modernisation", "Mainframe modernisation", "I.5"),
              ]),
         Part(roman="II", folder="application-stack", name="Application Stack",
              subtitle="How banking software is built",
@@ -54,6 +64,8 @@ def build_index() -> SiteIndex:
                            "APIs and integration", "II.1"),
                  TopicLink("02-microservices-monoliths-ddd",
                            "Microservices, monoliths, DDD", "II.2"),
+                 TopicLink("03-testing-strategies-bfsi",
+                           "Testing strategies in BFSI", "II.3"),
              ]),
         Part(roman="III", folder="data", name="Data",
              subtitle="Where banks keep their truth",
@@ -64,6 +76,8 @@ def build_index() -> SiteIndex:
                            "Databases & the ledger", "III.1"),
                  TopicLink("02-streaming-data-event-driven-architecture",
                            "Streaming data & event-driven architecture", "III.2"),
+                 TopicLink("03-data-governance-lineage-cdo",
+                           "Data governance, lineage & the CDO", "III.3"),
              ]),
         Part(roman="IV", folder="infra-ops", name="Infrastructure & Operations",
              subtitle="Where software runs",
@@ -97,6 +111,10 @@ def build_index() -> SiteIndex:
                            "Lending & originations", "VI.3"),
                  TopicLink("04-capmkts-and-insurance",
                            "Capital markets & insurance", "VI.4"),
+                 TopicLink("05-cards-and-switches",
+                           "Cards & switches", "VI.5"),
+                 TopicLink("06-wealth-management-platforms",
+                           "Wealth management platforms", "VI.6"),
              ]),
         Part(roman="VII", folder="leadership", name="Leadership Lenses",
              subtitle="Deciding & architecting",
@@ -107,6 +125,27 @@ def build_index() -> SiteIndex:
                            "Architecture decision frameworks", "VII.1"),
                  TopicLink("02-vendor-management-and-programme-delivery",
                            "Vendor management & programme delivery", "VII.2"),
+                 TopicLink("03-regulator-and-board-communication",
+                           "Communicating with regulators & boards", "VII.3"),
+             ]),
+        Part(roman="VIII", folder="ai-emerging", name="AI & Emerging Technology",
+             subtitle="The intelligent bank",
+             blurb=("Artificial intelligence, machine learning, generative AI, model risk "
+                    "management, LLMOps, and the regulator guardrails shaping the next decade."),
+             topics=[
+                 TopicLink("01-ai-ml-genai-in-bfsi",
+                           "AI, ML & GenAI in BFSI", "VIII.1"),
+                 TopicLink("02-blockchain-dlt-tokenised-assets",
+                           "Blockchain, DLT & tokenised assets", "VIII.2"),
+              ]),
+        Part(roman="IX", folder="finops", name="Cloud FinOps & Cost Governance",
+             subtitle="Spending smart on cloud",
+             blurb=("FinOps discipline, cloud cost optimisation, showback and chargeback, "
+                    "reserved instances, unit economics, and the regulatory dimension of "
+                    "cloud spend in banking."),
+             topics=[
+                 TopicLink("01-cloud-finops-cost-governance",
+                           "Cloud FinOps & cost governance", "IX.1"),
              ]),
     ]
     return SiteIndex(parts=parts)
@@ -128,7 +167,7 @@ def home_html(idx: SiteIndex) -> str:
                "Deutsche Bank, Barclays, NatWest, JPM or Wells Fargo debates in design reviews.")
         + callout("How to use this bible",
             ul([
-                "Read sequentially the first time — Parts I → VII build on each other.",
+                "Read sequentially the first time — Parts I → VIII build on each other.",
                 "After that, jump in via the sidebar or use the search box at the top of the sidebar.",
                 "Every term is hover-tipped on first use; the consolidated glossary lives in the sidebar.",
                 "Each section is tagged <span class='pill pill-basic'>Basic</span>, "
@@ -141,12 +180,23 @@ def home_html(idx: SiteIndex) -> str:
         + H2("What is in each Part")
         + parts_summary
         + H2("Status of this draft")
-        + p("This is the v1.14 build. The original core curriculum is complete across "
-            "Foundations, Application Stack, Data, Infrastructure & Operations, Security, "
-            "BFSI Domain Platforms and Leadership Lenses. Stretch topics now include: "
-            "<code>I.4 — Network fundamentals</code>, <code>III.2 — Streaming data "
-            "and event-driven architecture</code>, <code>IV.2 — DevOps & SRE in depth</code>, "
-            "and <code>V.2 — Fraud, AML & sanctions in depth</code>. "
+        + p("This is the v1.22 build — 27 topics across 9 Parts. The original core "
+            "curriculum is complete across Foundations, Application Stack, Data, "
+            "Infrastructure &amp; Operations, Security, BFSI Domain Platforms, Leadership "
+            "Lenses, AI &amp; Emerging Technology, and Cloud FinOps. "
+            "Stretch topics include: "
+            "<code>I.4 — Network fundamentals</code>, <code>I.5 — Mainframe modernisation</code>, "
+            "<code>II.3 — Testing strategies</code>, "
+            "<code>III.2 — Streaming data and event-driven architecture</code>, "
+            "<code>III.3 — Data governance, lineage &amp; the CDO</code>, "
+            "<code>IV.2 — DevOps &amp; SRE in depth</code>, "
+            "<code>V.2 — Fraud, AML &amp; sanctions in depth</code>, "
+            "<code>VI.5 — Cards &amp; switches</code>, "
+            "<code>VI.6 — Wealth management platforms</code>, "
+            "<code>VII.3 — Communicating with regulators &amp; boards</code>, "
+            "<code>VIII.1 — AI, ML &amp; GenAI in BFSI</code>, "
+            "<code>VIII.2 — Blockchain, DLT &amp; tokenised assets</code>, and "
+            "<code>IX.1 — Cloud FinOps &amp; cost governance</code>. "
             "The May 2026 deep rewrite of <code>I.1 — transaction flow</code> is complete. "
             "The finalised pedagogy remains: dual-anchor primer, geographic balance, worked "
             "examples with numbers and explicit abbreviation discipline.")
@@ -201,6 +251,7 @@ def main() -> None:
         foundations_02_seven_layers.build(),
         foundations_03_cloud.build(),
         foundations_04_network.build(),
+        foundations_05_mainframe.build(),
     ]
     for i, t in enumerate(found_topics):
         prev_l = (("index.html", "Foundations overview")
@@ -214,6 +265,7 @@ def main() -> None:
     app_topics = [
         application_stack_01_apis.build(),
         application_stack_02_microservices.build(),
+        application_stack_03_testing.build(),
     ]
     for i, t in enumerate(app_topics):
         prev_l = (("index.html", "Application stack overview")
@@ -228,6 +280,7 @@ def main() -> None:
     data_topics = [
         data_01_databases.build(),
         data_02_streaming.build(),
+        data_03_governance_lineage.build(),
     ]
     for i, t in enumerate(data_topics):
         prev_l = (("index.html", "Data overview")
@@ -266,6 +319,8 @@ def main() -> None:
         bfsi_platforms_02_payments_engines.build(),
         bfsi_platforms_03_lending.build(),
         bfsi_platforms_04_capmkts_insurance.build(),
+        bfsi_platforms_05_cards_switches.build(),
+        bfsi_platforms_06_wealth_management.build(),
     ]
     for i, t in enumerate(plat_topics):
         prev_l = (("index.html", "BFSI platforms overview")
@@ -280,6 +335,7 @@ def main() -> None:
     lead_topics = [
         leadership_01_architecture_decisions.build(),
         leadership_02_vendor_programme.build(),
+        leadership_03_regulator_board_comms.build(),
     ]
     for i, t in enumerate(lead_topics):
         prev_l = (("index.html", "Leadership overview")
@@ -288,6 +344,33 @@ def main() -> None:
         next_l = ((f"{lead_topics[i+1].slug}.html", lead_topics[i+1].title)
                   if i + 1 < len(lead_topics) else None)
         pages.append((f"leadership/{t.slug}.html", t.title, t.to_html(),
+                      prev_l, next_l))
+
+    # AI & Emerging Technology (Part VIII)
+    ai_topics = [
+        ai_emerging_01_ai_ml_genai.build(),
+        ai_emerging_02_blockchain_dlt.build(),
+    ]
+    for i, t in enumerate(ai_topics):
+        prev_l = (("index.html", "AI & Emerging Tech overview")
+                  if i == 0
+                  else (f"{ai_topics[i-1].slug}.html", ai_topics[i-1].title))
+        next_l = ((f"{ai_topics[i+1].slug}.html", ai_topics[i+1].title)
+                  if i + 1 < len(ai_topics) else None)
+        pages.append((f"ai-emerging/{t.slug}.html", t.title, t.to_html(),
+                      prev_l, next_l))
+
+    # Cloud FinOps & Cost Governance (Part IX)
+    finops_topics = [
+        finops_01_cloud_finops.build(),
+    ]
+    for i, t in enumerate(finops_topics):
+        prev_l = (("index.html", "Cloud FinOps & Cost Governance overview")
+                  if i == 0
+                  else (f"{finops_topics[i-1].slug}.html", finops_topics[i-1].title))
+        next_l = ((f"{finops_topics[i+1].slug}.html", finops_topics[i+1].title)
+                  if i + 1 < len(finops_topics) else None)
+        pages.append((f"finops/{t.slug}.html", t.title, t.to_html(),
                       prev_l, next_l))
 
     write_site(idx=idx, pages=pages, home_html=home_html(idx),

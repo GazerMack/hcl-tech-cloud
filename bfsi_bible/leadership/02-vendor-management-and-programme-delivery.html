@@ -25,14 +25,17 @@
 <a class="topic" href="../foundations/02-seven-layers.html">I.2 · Seven-layer mental model</a>
 <a class="topic" href="../foundations/03-cloud-and-infra.html">I.3 · Cloud, on-prem, hybrid</a>
 <a class="topic" href="../foundations/04-network-fundamentals.html">I.4 · Network fundamentals</a>
+<a class="topic" href="../foundations/05-mainframe-modernisation.html">I.5 · Mainframe modernisation</a>
 <div class="part">II — Application Stack</div>
 <a href="../application-stack/index.html">Overview</a>
 <a class="topic" href="../application-stack/01-apis-and-integration.html">II.1 · APIs and integration</a>
 <a class="topic" href="../application-stack/02-microservices-monoliths-ddd.html">II.2 · Microservices, monoliths, DDD</a>
+<a class="topic" href="../application-stack/03-testing-strategies-bfsi.html">II.3 · Testing strategies in BFSI</a>
 <div class="part">III — Data</div>
 <a href="../data/index.html">Overview</a>
 <a class="topic" href="../data/01-databases-and-the-ledger.html">III.1 · Databases &amp; the ledger</a>
 <a class="topic" href="../data/02-streaming-data-event-driven-architecture.html">III.2 · Streaming data &amp; event-driven architecture</a>
+<a class="topic" href="../data/03-data-governance-lineage-cdo.html">III.3 · Data governance, lineage &amp; the CDO</a>
 <div class="part">IV — Infrastructure &amp; Operations</div>
 <a href="../infra-ops/index.html">Overview</a>
 <a class="topic" href="../infra-ops/01-cloud-native-operations.html">IV.1 · Cloud-native operations</a>
@@ -40,16 +43,27 @@
 <div class="part">V — Security, Risk &amp; Compliance</div>
 <a href="../security-risk/index.html">Overview</a>
 <a class="topic" href="../security-risk/01-security-identity-regulators.html">V.1 · Security, identity &amp; regulators</a>
+<a class="topic" href="../security-risk/02-fraud-aml-sanctions.html">V.2 · Fraud, AML &amp; sanctions in depth</a>
 <div class="part">VI — BFSI Domain Platforms</div>
 <a href="../bfsi-platforms/index.html">Overview</a>
 <a class="topic" href="../bfsi-platforms/01-core-banking-platforms.html">VI.1 · Core banking platforms</a>
 <a class="topic" href="../bfsi-platforms/02-payments-engines.html">VI.2 · Payments engines</a>
 <a class="topic" href="../bfsi-platforms/03-lending-and-originations.html">VI.3 · Lending &amp; originations</a>
 <a class="topic" href="../bfsi-platforms/04-capmkts-and-insurance.html">VI.4 · Capital markets &amp; insurance</a>
+<a class="topic" href="../bfsi-platforms/05-cards-and-switches.html">VI.5 · Cards &amp; switches</a>
+<a class="topic" href="../bfsi-platforms/06-wealth-management-platforms.html">VI.6 · Wealth management platforms</a>
 <div class="part">VII — Leadership Lenses</div>
 <a href="../leadership/index.html">Overview</a>
 <a class="topic" href="../leadership/01-architecture-decision-frameworks.html">VII.1 · Architecture decision frameworks</a>
 <a class="topic" href="../leadership/02-vendor-management-and-programme-delivery.html">VII.2 · Vendor management &amp; programme delivery</a>
+<a class="topic" href="../leadership/03-regulator-and-board-communication.html">VII.3 · Communicating with regulators &amp; boards</a>
+<div class="part">VIII — AI &amp; Emerging Technology</div>
+<a href="../ai-emerging/index.html">Overview</a>
+<a class="topic" href="../ai-emerging/01-ai-ml-genai-in-bfsi.html">VIII.1 · AI, ML &amp; GenAI in BFSI</a>
+<a class="topic" href="../ai-emerging/02-blockchain-dlt-tokenised-assets.html">VIII.2 · Blockchain, DLT &amp; tokenised assets</a>
+<div class="part">IX — Cloud FinOps &amp; Cost Governance</div>
+<a href="../finops/index.html">Overview</a>
+<a class="topic" href="../finops/01-cloud-finops-cost-governance.html">IX.1 · Cloud FinOps &amp; cost governance</a>
   </nav>
 </aside>
 
@@ -109,7 +123,7 @@
 <ol><li>Is the vendor on our material outsourcing register, and is the rationale documented?</li><li>What is the tested exit plan, and when did we last rehearse it?</li><li>Where does this engagement sit in the four-quadrant (strategic / operational / critical / tactical) view?</li><li>What is the named SMF / officer accountable for the vendor relationship?</li><li>Is the SoW outcome-linked, time-and-materials, or fixed-price — and is that the right model for the work?</li><li>What does the RAID log say is on fire this week, and who owns each item?</li><li>Has the steerco moved from ‘green’ to ‘red’ without an ‘amber’ in between?</li><li>What is the regulator-deadline tracker for this programme, and is there a credible margin to each deadline?</li><li>What concentration are we creating with this engagement, and how is it acknowledged?</li><li>Are security and resilience clauses (DORA-aligned) in the contract, with TLPT cooperation, incident notification and audit rights?</li><li>What is the exit-cost projection, and have we modelled it?</li><li>What are the 2–3 decisions we need to make at this steerco, and who is the decision-maker?</li></ol>
 <h2 id="9-red-flags-topic-glossary">9.  Red flags + topic glossary <span class="pill pill-basic">Basic</span></h2>
 <div class="callout red"><span class="label">Red flag — push back if you hear this</span><ul><li>‘The vendor will tell us if there is a problem.’ — They will, eventually. Independent assurance and your own delivery insight catch it earlier.</li><li>‘Fixed price is safer.’ — Fixed price is safer for scope you understand; it is more dangerous for scope you don’t. Match the model to the work.</li><li>‘Service credits are our protection.’ — They are a tiny fraction of the loss in a real incident. The controls that prevent the incident are the protection.</li><li>‘RFP scoring solves vendor selection.’ — Scoring rationalises a decision that has often already been made. The PoC and the references settle it.</li><li>‘Exit plans are paperwork.’ — DORA tests them; RBI tests them; PRA tests them. Untested exit plans are findings.</li><li>‘Programme is green.’ — Green for what? On budget, on scope, on time, on outcome — usually one is true and one is hiding.</li><li>‘Steerco doesn’t need risk and compliance.’ — Then it isn’t a BFSI steerco.</li><li>‘Sub-contracting was a vendor decision.’ — In BFSI regulators expect explicit consent for material sub-contracting.</li><li>‘We’ll outsource the operational risk to the vendor.’ — Operational risk cannot be outsourced; only the activity can.</li><li>‘We don’t need a programme war-room; the vendor has one.’ — You both need one. Cutover incidents compound across boundaries.</li></ul></div><h3 id="glossary-for-this-topic">Glossary for this topic</h3><ul><li><strong>MSA / SoW / DPA / BAA</strong> — Master Services Agreement / Statement of Work / Data Processing Agreement / Business Associate Agreement.</li><li><strong>RFI / RFP / RFQ</strong> — Request for Information / Proposal / Quotation.</li><li><strong>PoC</strong> — Proof of Concept — short, scoped vendor evaluation.</li><li><strong>SLA / SLO</strong> — Service-Level Agreement / Objective.</li><li><strong>RAID</strong> — Risks, Assumptions, Issues, Dependencies log.</li><li><strong>RAG</strong> — Red / Amber / Green programme status.</li><li><strong>Steerco</strong> — Steering committee — programme governance forum.</li><li><strong>Hypercare</strong> — Post-go-live elevated support period.</li><li><strong>Outcome-based pricing</strong> — Fees tied to measurable business outcomes.</li><li><strong>Capacity / pod model</strong> — FTE-pool engagement common with SI delivery.</li><li><strong>CTP</strong> — Critical Third Party — designated vendor under EU DORA / UK FSMA 2023.</li><li><strong>Material outsourcing</strong> — Classification under RBI / PRA / EBA / MAS rules.</li><li><strong>Step-in / termination assistance</strong> — Vendor obligations to support orderly exit or regulator step-in.</li><li><strong>Sub-processor / sub-contractor</strong> — Vendor’s vendors; subject to bank consent for material services.</li><li><strong>Concentration risk</strong> — Excessive reliance on a small number of vendors / clouds / regions.</li><li><strong>Schrems II</strong> — 2020 CJEU ruling restricting personal-data flows from EU to non-adequate jurisdictions.</li><li><strong>Right of audit</strong> — Bank, regulator and appointee audit rights baked into the contract.</li><li><strong>Indemnity / liability cap</strong> — Risk-allocation clauses negotiated in MSAs.</li><li><strong>Service credit</strong> — Fee reduction for SLA breaches; not the only remedy.</li><li><strong>Discovery sprint</strong> — Pre-contract paid exploration to de-risk scope and design.</li><li><strong>Strangler-fig migration</strong> — Incremental replacement pattern; default for legacy modernisation.</li><li><strong>Programme PIR</strong> — Post-Implementation Review at the programme level.</li><li><strong>DORA / RBI Outsourcing MD / PRA SS2/21 / MAS Outsourcing / NYDFS Part 500.11 / OCC Heightened Standards / Fed SR 23-4 / APRA CPS 230</strong> — The major outsourcing-related regulator regimes.</li></ul>
-    <nav class="page-nav"><a href="01-architecture-decision-frameworks.html"><span class="dir">← Previous</span>Architecture decision frameworks for techno-functional leaders</a><span></span></nav>
+    <nav class="page-nav"><a href="01-architecture-decision-frameworks.html"><span class="dir">← Previous</span>Architecture decision frameworks for techno-functional leaders</a><a href="03-regulator-and-board-communication.html"><span class="dir">Next →</span>Communicating with regulators and boards — the skill that unlocks everything else</a></nav>
   </main>
   <aside class="toc-right"><div class="label">On this page</div></aside>
 </div>
