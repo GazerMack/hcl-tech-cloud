@@ -95,6 +95,18 @@ def _sec0() -> TopicSection:
             "the policies, the regulators, the auditors; the evidence "
             "machine.",
         ])
+        + callout("Related topics in this bible",
+            ul([
+                "<a href='02-fraud-aml-sanctions.html'><strong>V.2 — Fraud, AML &amp; sanctions</strong></a> "
+                "— the operational front line that Security underpins.",
+                "<a href='../bfsi-platforms/02-payments-engines.html'><strong>VI.2 — Payments engines</strong></a> "
+                "— every payment crosses the seven control points described here.",
+                "<a href='../bfsi-platforms/05-cards-and-switches.html'><strong>VI.5 — Cards &amp; switches</strong></a> "
+                "— PCI DSS, HSMs, and EMV/3DS2 are security-first card topics.",
+                "<a href='../infra-ops/01-cloud-native-operations.html'><strong>IV.1 — Cloud-native operations</strong></a> "
+                "— CSPM, CNAPP, and workload identity apply when the bank runs on cloud.",
+            ]),
+            "info")
     )
     return TopicSection(
         "0.  Primer — six disciplines, one trust promise",

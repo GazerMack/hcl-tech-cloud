@@ -103,6 +103,18 @@ def _sec0() -> TopicSection:
             "CACS, Tallyman (Experian), Pega Collections, Indus "
             "Collections, in-house at large banks.",
         ])
+        + callout("Related topics in this bible",
+            ul([
+                "<a href='01-core-banking-platforms.html'><strong>VI.1 — Core banking</strong></a> "
+                "— LMS books loans to the core's GL and reads account/customer master.",
+                "<a href='02-payments-engines.html'><strong>VI.2 — Payments engines</strong></a> "
+                "— disbursement, EMI collection, and settlement flow through the payments hub.",
+                "<a href='05-cards-and-switches.html'><strong>VI.5 — Cards &amp; switches</strong></a> "
+                "— credit-card lending, card-linked EMI, and BNPL are card-network-dependent.",
+                "<a href='../security-risk/02-fraud-aml-sanctions.html'><strong>V.2 — Fraud, AML &amp; sanctions</strong></a> "
+                "— KYC, AML screening, and fraud scoring are part of every origination flow.",
+            ]),
+            "info")
     )
     return TopicSection(
         "0.  Primer — four platforms, one customer journey",
@@ -492,6 +504,96 @@ def _sec3() -> TopicSection:
                 "‘For Finastra, I will ask which product is in scope: Loan IQ, Fusion Originate, LaserPro, Essence, Global PAYplus, Trade Innovation, Summit or another module.’",
                 "‘My BA artefacts would include process maps, fit-gap, source-to-target mapping, interface catalogue, test scenarios, migration reconciliation and UAT evidence.’",
             ]),
+            "info")
+        + H3("3.12  Loan IQ batch architecture — what runs overnight")
+        + p("Loan IQ is a batch-heavy platform. Most commercial-loan servicing events that "
+            "are not user-initiated happen in scheduled batch cycles. Understanding these is "
+            "critical for integration work because downstream systems (GL, risk, data warehouse, "
+            "notices, payments) depend on batch outputs arriving on time and in the correct "
+            "sequence.")
+        + table(
+            ["Batch cycle", "What it does", "Integration dependency"],
+            [
+                ["<strong>End-of-Day (EOD)</strong>",
+                 "Interest accrual calculation, fee accrual, rate reset processing, "
+                 "maturity and rollover processing, GL posting generation, "
+                 "covenant monitoring triggers, notice generation (interest notices, "
+                 "drawdown confirmations, rate-change notices).",
+                 "GL extract files, payment instruction files (for interest and "
+                 "fee collections), notice files (to document management or "
+                 "customer communication platform), risk exposure feed."],
+                ["<strong>Beginning-of-Day (BOD)</strong>",
+                 "Date roll, calendar update, rate feed ingestion (SOFR, SONIA, "
+                 "€STR, TONA from Bloomberg or Reuters), holiday calendar "
+                 "application, limit refresh.",
+                 "Market data feed (upstream), core banking calendar sync."],
+                ["<strong>Month-end close</strong>",
+                 "Accounting period close, month-end accrual sweep, "
+                 "provision calculation feed, regulatory reporting extract "
+                 "(large-exposure, Basel pillar-3), portfolio-level "
+                 "MIS generation.",
+                 "Finance and regulatory reporting systems, data warehouse "
+                 "month-end snapshot, auditor access."],
+                ["<strong>Intraday (manual or scheduled)</strong>",
+                 "Drawdown booking, repayment processing, rollover execution, "
+                 "fee payment, amendment processing. These are typically "
+                 "user-initiated via the Loan IQ front-end or upstream "
+                 "integration (nCino, internal workflow).",
+                 "Real-time or near-real-time updates to payments hub, "
+                 "limit system, customer portal."],
+            ]
+        )
+        + p("A typical Loan IQ estate has 15–30 batch jobs in the EOD sequence. Sequencing "
+            "matters — accruals must run before GL posting, rate resets before accrual. A "
+            "common integration project risk is assuming these batch outputs are available "
+            "instantly; they are not — EOD can take 2–4 hours depending on portfolio size.")
+        + H3("3.13  Finastra product family — beyond lending")
+        + p("Finastra is one of the world's largest financial software companies (formed from "
+            "the merger of Misys and D+H in 2017). In integration projects, 'Finastra' may refer "
+            "to any of a dozen products across different banking domains. Always ask which "
+            "specific Finastra product is in scope.")
+        + table(
+            ["Domain", "Finastra product(s)", "What it does"],
+            [
+                ["<strong>Commercial/Syndicated lending</strong>",
+                 "Loan IQ",
+                 "Facility management, drawdowns, rollovers, agency, participation, "
+                 "fees, accounting, notices. The flagship lending product."],
+                ["<strong>Loan origination</strong>",
+                 "Fusion Originate, LaserPro",
+                 "Origination workflow, document generation, compliance checks. "
+                 "LaserPro is dominant in US community/regional bank lending compliance."],
+                ["<strong>Payments</strong>",
+                 "Global PAYplus (GPP), Fusion Payments To Go",
+                 "Multi-rail payment hub supporting SWIFT, SEPA, FedNow, "
+                 "real-time payments, ACH, domestic schemes."],
+                ["<strong>Treasury and capital markets</strong>",
+                 "Summit (now Fusion Summit), Kondor+ (now Fusion Kondor)",
+                 "Front-to-back treasury management, FX, derivatives, money markets, "
+                 "fixed income. Summit is used by many tier-1 banks."],
+                ["<strong>Trade finance</strong>",
+                 "Trade Innovation (FTI), Fusion Trade Innovation",
+                 "Letters of credit, guarantees, documentary collections, "
+                 "supply-chain finance."],
+                ["<strong>Universal banking / core</strong>",
+                 "Fusion Essence, Fusion UBS (Universal Banking Solution)",
+                 "Core banking for mid-tier banks, particularly in Asia-Pacific and "
+                 "Middle East. Covers deposits, lending, trade, treasury."],
+                ["<strong>Risk and compliance</strong>",
+                 "Fusion Risk, Fusion Compliance",
+                 "Market risk, credit risk, liquidity risk, regulatory reporting. "
+                 "Often interfaces with the lending and treasury systems above."],
+                ["<strong>Digital banking</strong>",
+                 "Fusion Digital Banking",
+                 "Omnichannel digital experience layer for retail and corporate banking."],
+            ]
+        )
+        + callout("Integration project tip",
+            p("On a typical Finastra integration project, you may see Loan IQ for "
+              "lending, Global PAYplus for payments, and Summit for treasury — all Finastra "
+              "products but with different architectures, different teams, different release "
+              "cycles, and different interface standards. Never assume uniform architecture "
+              "across the Finastra family."),
             "info")
     )
     return TopicSection(

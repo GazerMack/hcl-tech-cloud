@@ -1,4 +1,7 @@
-"""Foundations · 01 — How a digital banking transaction actually flows."""
+"""DEPRECATED — This file is the old split version of I.1 Transactions.
+The generator (generate.py) imports foundations_01_transactions_v2 as the
+canonical I.1 topic.  This file and its companions (foundations_01_part2.py,
+foundations_01_part3.py) are kept for reference only.  Do NOT edit — edit _v2 instead."""
 from __future__ import annotations
 
 from ..site import (

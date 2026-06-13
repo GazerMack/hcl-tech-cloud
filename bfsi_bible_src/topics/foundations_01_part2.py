@@ -1,4 +1,6 @@
-"""Sections 4 and 5 of Foundations · 01 — split out for token-budget reasons."""
+"""DEPRECATED — Part of the old split version of I.1 Transactions.
+The generator uses foundations_01_transactions_v2.py instead.
+This file is kept for reference only.  Do NOT edit — edit _v2 instead."""
 from __future__ import annotations
 
 from ..site import (

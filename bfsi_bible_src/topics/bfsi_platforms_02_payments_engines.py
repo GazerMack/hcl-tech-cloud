@@ -113,6 +113,20 @@ def _sec0() -> TopicSection:
             "— match what we sent against what cleared; produce "
             "regulatory and customer reports.",
         ])
+        + callout("Related topics in this bible",
+            ul([
+                "<a href='01-core-banking-platforms.html'><strong>VI.1 — Core banking</strong></a> "
+                "— the core is where payment instructions debit and credit the ledger.",
+                "<a href='03-lending-and-originations.html'><strong>VI.3 — Lending</strong></a> "
+                "— loan disbursement and EMI collection flow through the payments engine.",
+                "<a href='05-cards-and-switches.html'><strong>VI.5 — Cards &amp; switches</strong></a> "
+                "— card authorisation, clearing, and settlement use separate rails but converge at the core.",
+                "<a href='../security-risk/02-fraud-aml-sanctions.html'><strong>V.2 — Fraud, AML &amp; sanctions</strong></a> "
+                "— every payment must pass sanctions and AML screening before routing.",
+                "<a href='../foundations/01-transactions.html'><strong>I.1 — Transaction flow</strong></a> "
+                "— the eight-phase skeleton that every payment follows.",
+            ]),
+            "info")
     )
     return TopicSection(
         "0.  Primer — schemes, rails and engines, said three different ways",

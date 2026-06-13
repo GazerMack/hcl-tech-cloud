@@ -48,6 +48,18 @@ def _sec0() -> TopicSection:
               "core globally being rationalised. The number you see is the core banking "
               "system’s answer.")
         )
+        + callout("Related topics in this bible",
+            ul([
+                "<a href='02-payments-engines.html'><strong>VI.2 — Payments engines</strong></a> "
+                "— the payments hub sits downstream of the core and routes transactions to rails.",
+                "<a href='03-lending-and-originations.html'><strong>VI.3 — Lending &amp; originations</strong></a> "
+                "— LOS and LMS depend on the core for balance, GL, and customer master.",
+                "<a href='05-cards-and-switches.html'><strong>VI.5 — Cards &amp; switches</strong></a> "
+                "— card issuance links to the core for account and limit management.",
+                "<a href='../foundations/01-transactions.html'><strong>I.1 — Transaction flow</strong></a> "
+                "— the core is where every transaction ultimately posts to the ledger.",
+            ]),
+            "info")
     )
     return TopicSection("0.  Primer — anchored to things you already know", "basic", body)
 
@@ -154,7 +166,47 @@ def _sec3() -> TopicSection:
             "mainframes with internally maintained applications, often written in COBOL and "
             "PL/I, married to IBM Db2 or IMS for the data layer. JPM Chase, Wells Fargo, BoA, "
             "Citi (parts), BoB India, SBI, Lloyds (parts), and others. Modernisation here "
-            "rarely means ‘replace’; it means ‘encapsulate behind APIs and surround’.")
+            "rarely means 'replace'; it means 'encapsulate behind APIs and surround'.")
+        + H3("3.4  Islamic / Shariah-compliant cores")
+        + p("Islamic banking prohibits interest (riba), excessive uncertainty (gharar), and "
+            "gambling (maysir). Instead, products are structured as cost-plus sales (Murabaha), "
+            "profit-sharing partnerships (Mudarabah, Musharakah), leasing (Ijara), or deferred "
+            "delivery (Salam, Istisna). A core banking system serving Islamic products must "
+            "model these contract types natively — not as interest-bearing loans with cosmetic "
+            "renaming. This is a significant architectural requirement, not a configuration "
+            "toggle. Total Islamic banking assets globally exceed USD 4 trillion (2024), "
+            "concentrated in the GCC, Malaysia, Indonesia, Pakistan, Turkey, and the UK "
+            "(Islamic windows at HSBC, Standard Chartered, Al Rayan Bank).")
+        + table(
+            ["Vendor / product", "Approach", "Notable customers"],
+            [
+                ["<strong>Temenos T24 Islamic Banking</strong>",
+                 "Native Islamic module within T24/Transact; supports Murabaha, Ijara, "
+                 "Mudarabah, Musharakah, Salam, Istisna, Wakala; Shariah-compliant "
+                 "profit-distribution engine.",
+                 "Abu Dhabi Islamic Bank (ADIB), Bank of Sharjah, several GCC and "
+                 "SE Asian Islamic banks."],
+                ["<strong>Path Solutions — iMAL</strong>",
+                 "Purpose-built Islamic core; considered the specialist market leader; "
+                 "certified by multiple Shariah boards.",
+                 "Kuwait Finance House, Jordan Islamic Bank, QIB, "
+                 "several African and Central Asian Islamic banks."],
+                ["<strong>Oracle FLEXCUBE Islamic Banking</strong>",
+                 "Islamic module within FLEXCUBE; widely deployed in the Gulf.",
+                 "Mashreq, several MENA tier-2 banks."],
+                ["<strong>Infosys Finacle Islamic Banking</strong>",
+                 "Islamic overlay on Finacle; strong in MENA and Malaysia.",
+                 "Abu Dhabi Commercial Bank Islamic, several Malaysian banks."],
+                ["<strong>TCS BaNCS for Islamic Banking</strong>",
+                 "Islamic module extending BaNCS; used in Gulf and Pakistan.",
+                 "National Bank of Pakistan (Islamic division), select GCC banks."],
+                ["<strong>Mambu (Islamic config)</strong>",
+                 "Cloud-native approach; Islamic products configured as smart "
+                 "contracts; used by digital Islamic banks.",
+                 "Nomo (Bank of London and the Middle East digital), selected "
+                 "SE Asian digital Islamic banks."],
+            ]
+        )
     )
     return TopicSection("3.  The vendor landscape — current as of 2025",
                         "intermediate", body)

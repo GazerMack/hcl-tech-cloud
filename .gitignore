@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.cascade/
+*.swp
+*.swo
+.DS_Store

@@ -84,6 +84,18 @@ def _sec0() -> TopicSection:
             "(e.g. OFAC (Office of Foreign Assets Control), UN, EU, UK, MAS, RBI lists). "
             "A single slip can result in multi-billion dollar regulatory fines.",
         ])
+        + callout("Related topics in this bible",
+            ul([
+                "<a href='01-security-identity-regulators.html'><strong>V.1 — Security &amp; identity</strong></a> "
+                "— the broader security stack that Fraud/AML operates within.",
+                "<a href='../bfsi-platforms/02-payments-engines.html'><strong>VI.2 — Payments engines</strong></a> "
+                "— every payment passes through sanctions and fraud screening.",
+                "<a href='../bfsi-platforms/05-cards-and-switches.html'><strong>VI.5 — Cards &amp; switches</strong></a> "
+                "— card fraud, chargebacks, and 3DS2 authentication.",
+                "<a href='../bfsi-platforms/03-lending-and-originations.html'><strong>VI.3 — Lending</strong></a> "
+                "— KYC and AML screening are mandatory in every loan origination flow.",
+            ]),
+            "info")
     )
     return TopicSection(
         "0.  Primer — the spam filter of the global financial system",
