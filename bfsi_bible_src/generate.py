@@ -29,6 +29,7 @@ from .topics import (
     leadership_01_architecture_decisions,
     leadership_02_vendor_programme,
     leadership_03_regulator_board_comms,
+    leadership_04_experience_gaps,
     bfsi_platforms_05_cards_switches,
     bfsi_platforms_06_wealth_management,
     ai_emerging_01_ai_ml_genai,
@@ -127,6 +128,8 @@ def build_index() -> SiteIndex:
                            "Vendor management & programme delivery", "VII.2"),
                  TopicLink("03-regulator-and-board-communication",
                            "Communicating with regulators & boards", "VII.3"),
+                 TopicLink("04-closing-experience-gaps",
+                           "Closing the four experience gaps", "VII.4"),
              ]),
         Part(roman="VIII", folder="ai-emerging", name="AI & Emerging Technology",
              subtitle="The intelligent bank",
@@ -180,7 +183,7 @@ def home_html(idx: SiteIndex) -> str:
         + H2("What is in each Part")
         + parts_summary
         + H2("Status of this draft")
-        + p("This is the v1.22 build — 27 topics across 9 Parts. The original core "
+        + p("This is the v1.23 build — 28 topics across 9 Parts. The original core "
             "curriculum is complete across Foundations, Application Stack, Data, "
             "Infrastructure &amp; Operations, Security, BFSI Domain Platforms, Leadership "
             "Lenses, AI &amp; Emerging Technology, and Cloud FinOps. "
@@ -336,6 +339,7 @@ def main() -> None:
         leadership_01_architecture_decisions.build(),
         leadership_02_vendor_programme.build(),
         leadership_03_regulator_board_comms.build(),
+        leadership_04_experience_gaps.build(),
     ]
     for i, t in enumerate(lead_topics):
         prev_l = (("index.html", "Leadership overview")
